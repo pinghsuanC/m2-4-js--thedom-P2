@@ -9,6 +9,18 @@
 
 const addNumbers = (...nums) => {
   // Insert missing solution please
+  //check input
+  if(nums.length===0){
+    return undefined;
+  }
+  //loop
+  let s = 0;
+  for(let n=0; n<nums.length; n++){
+    if(typeof(nums[n])==="number"){
+      s += nums[n]**2;
+    }
+  }
+  return s;
 };
 
 // Part 2 - Test

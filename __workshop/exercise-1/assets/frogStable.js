@@ -25,3 +25,4 @@ const frogstable = [
     number: "8",
   },
 ];
+

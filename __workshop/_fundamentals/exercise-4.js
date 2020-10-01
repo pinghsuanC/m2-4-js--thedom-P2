@@ -12,6 +12,18 @@
 
 const count = (arr, key) => {
   // Insert missing solution please
+  //check input
+  if(typeof(key)!=="string" || !Array.isArray(arr)){
+    return undefined;
+  }
+  //process
+  let s = 0;
+  arr.forEach(element => {
+    if(key in element && typeof(element[key])==="number"){
+      s+=element[key];
+    }
+  });
+  return s;
 };
 
 // Part 2 - Test
@@ -19,6 +31,6 @@ const count = (arr, key) => {
 // Test your function.
 // Look for the corresponding exercise file in the __tests__ folder.
 // Add some test cases in the test. The first one is done for you.
-
+console.log(count([{ name: "Bob", amount: 100 }, { name: "Josie", amount: 45 }], 'amount'));
 // We need to export the function in order for our unit test to have access to it.
 module.exports = count;

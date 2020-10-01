@@ -28,6 +28,40 @@
 
 const uniqueElements = (arr1, arr2) => {
   // Your code here
+  //check inputs
+  if(!Array.isArray(arr1) || !Array.isArray(arr2)){
+      return undefined;
+  }
+  if(arr1.length===0){
+    return arr2;        // if arr1 is empty then all elements in arr2 are unique
+  }
+  if(arr2.length===0){
+    return arr1;        // if arr2 is empty then all elements in arr1 are unique
+  }
+
+  // pre-processing: remove the identical elements
+  arr1 = [...new Set(arr1)];    // tried but filter didn't work...
+  arr2 = [...new Set(arr2)];
+  
+
+  // find AUB by A+B - ANB;
+  // find ANB
+  let dup = [];
+  for(let i=0; i<arr1.length; i++){
+    ele_1 = arr1[i];
+    for(let j=0; j<arr2.length; j++){
+      ele_2 = arr2[j];
+      if(ele_1===ele_2){
+        dup.push(ele_1);
+      }
+    }
+  }
+  
+
+  let com = [...arr1, ...arr2].filter((value)=>{
+    return !dup.includes(value);
+  });
+  return com;
 };
 
 // Part 2 - Test
@@ -35,6 +69,8 @@ const uniqueElements = (arr1, arr2) => {
 // Test your function.
 // Look for the corresponding exercise file in the __tests__ folder.
 // Add some test cases in the test. The first one is done for you.
-
+//console.log(uniqueElements([0, 1, 2, 3, 3, 7, 7,6], [1, 3, 4, 5, 6]) );    //[0,2,4,5]
+//console.log(uniqueElements([2,3,4], [1, 3, 4, 5]));
+uniqueElements([1, 2, "string", null], [1, 4, "string2"])
 // We need to export the function in order for our unit test to have access to it.
 module.exports = uniqueElements;

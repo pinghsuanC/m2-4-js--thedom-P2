@@ -10,13 +10,20 @@
 
 const redacted = (arr) => {
   // Insert missing solution please
-};
+  arr.map((element, index, array)=>
+    {if(typeof(element)==="string")
+      array[index]="redacted";
+    }
+  );
+  
+  return arr;
+}
 
 // Part 2 - Test
 // --------------
 // Test your function.
 // Look for the corresponding exercise file in the __tests__ folder.
 // Add some test cases in the test. The first one is done for you.
-
+console.log(redacted(["bacon", false, 42]));
 // We need to export the function in order for our unit test to have access to it.
 module.exports = redacted;
